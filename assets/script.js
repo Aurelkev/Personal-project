@@ -1,8 +1,8 @@
 const slides = [
-	{
-		"image": "slide1.jpg",
-		"tagLine": "Quizz <span>sur les jeux vidéos</span>"
-	},
+    {
+        "image": "slide1.jpg",
+        "tagLine": "Quizz <span>sur les jeux vidéos</span>"
+    },
 
 ]
 let actualSlider = 0;
@@ -15,53 +15,53 @@ const dotsContainer = document.querySelector('.dots');
 
 //Function to create dots for each slide
 function createDots() {
-	// Create dots for each slides
-	slides.forEach((slide) => {
-		const dot = document.createElement('div');
-		dot.classList.add('dot');
-		// Add dot to the container
-		dotsContainer.appendChild(dot);
-	});
+    // Create dots for each slides
+    slides.forEach((slide) => {
+        const dot = document.createElement('div');
+        dot.classList.add('dot');
+        // Add dot to the container
+        dotsContainer.appendChild(dot);
+    });
 }
 
 // Function to show slides
 function showSlide() {
-	const slide = slides[actualSlider];
-	bannerImg.src = `./assets/images/slideshow/${slide.image}`;
-	bannerTagline.innerHTML = slide.tagLine;
-	console.log(`Image affichée : ${slide.image}`);
-	updateDots();
+    const slide = slides[actualSlider];
+    bannerImg.src = `./assets/images/slideshow/${slide.image}`;
+    bannerTagline.innerHTML = slide.tagLine;
+    console.log(`Image affichée : ${slide.image}`);
+    updateDots();
 }
 
 // Function to updateDots
 function updateDots() {
-	const dots = document.querySelectorAll('.dots .dot');
-	// Remove 'dot_selected' from each dot
-	dots.forEach(dot => {
-		dot.classList.remove('dot_selected');
-	});
-	// Apply the class "dot_selected" at the dot selected by the actual slider
-	dots[actualSlider].classList.add('dot_selected');
+    const dots = document.querySelectorAll('.dots .dot');
+    // Remove 'dot_selected' from each dot
+    dots.forEach(dot => {
+        dot.classList.remove('dot_selected');
+    });
+    // Apply the class "dot_selected" at the dot selected by the actual slider
+    dots[actualSlider].classList.add('dot_selected');
 }
 
 // Event Listener for left arrow
 arrowLeft.addEventListener('click', function () {
-	console.log(`Click on the Left arrow !`);
-	actualSlider--;
-	if (actualSlider < 0) {
-		actualSlider = slides.length - 1;
-	}
-	showSlide();
+    console.log(`Click on the Left arrow !`);
+    actualSlider--;
+    if (actualSlider < 0) {
+        actualSlider = slides.length - 1;
+    }
+    showSlide();
 });
 
 // Event Listener for right arrow
 arrowRight.addEventListener('click', function () {
-	console.log(`Click on the Right arrow !`);
-	actualSlider++;
-	if (actualSlider >= slides.length) {
-		actualSlider = 0;
-	}
-	showSlide();
+    console.log(`Click on the Right arrow !`);
+    actualSlider++;
+    if (actualSlider >= slides.length) {
+        actualSlider = 0;
+    }
+    showSlide();
 });
 
 // Init
@@ -142,8 +142,19 @@ nextBtn.addEventListener("click", () => {
 function showResult() {
     quiz.style.display = "none";
     resultEl.style.display = "block";
-    resultEl.textContent = `You scored ${score}/${quizData.length}!`;
-}
+    const totalQuestions = quizData.length;
+    const oneThird = Math.floor(totalQuestions / 3);
+    const twoThirds = Math.floor(2 * totalQuestions / 3);
+    let message;
+    if (score <= oneThird) {
+        message = "Pas terrible";
+    } else if (score <= twoThirds) {
+        message = "Moyen";
+    } else if (score <= totalQuestions) {
+        message = "Bien joué";
+    }
 
+    resultEl.innerHTML = `Tu as fais un score de ${score}/${totalQuestions}! <br> ${message}`;
+}
 loadQuestion();
 nextBtn.style.display = "none";
