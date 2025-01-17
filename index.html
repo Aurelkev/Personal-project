@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./assets/style.css">
-    <script src="./assets/script.js"></script>
+
 </head>
 
 <body>
@@ -14,20 +14,33 @@
     </header>
     <main>
         <div id="banner">
-            <img class="banner-img" src="./assets/images/slideshow/slide1.jpg" alt="Banner Print-it">
+            <img class="banner-img" src="./assets/images/slideshow/slide1.jpg" alt="banner image">
             <button class="arrow arrow_left" aria-label="fleche de gauche">
-                <img src="assets/images/arrow_left.png" alt="fleche de gauche">
+                <img class="btn-img" src="./assets/images/arrow_left.png" alt="fleche de gauche">
             </button>
             <button class="arrow arrow_right" aria-label="fleche de droite">
-                    <img src="assets/images/arrow_right.png" alt="fleche de droite">
+                <img class="btn-img" src="assets/images/arrow_right.png" alt="fleche de droite">
             </button>
-            <p class="banner-tagline">Impressions tous formats <span>en boutique et en ligne</span></p>
+            <p class="banner-tagline"></p>
             <div class="dots"></div>
         </div>
+
+        <section class="quiz-container">
+            <div id="quiz">
+                <div class="quiz-header">
+                    <h2>Video Game Quiz</h2>
+                    <p id="question" class="quiz-question"></p>
+                </div>
+                <div class="quiz-options" id="options"></div>
+                <button id="next-btn">Next Question</button>
+            </div>
+            <div id="result" class="quiz-result"></div>
+        </section>
     </main>
     <footer>
 
     </footer>
 </body>
+<script src="./assets/script.js"></script>
 
 </html>

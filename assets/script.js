@@ -1,20 +1,9 @@
 const slides = [
 	{
 		"image": "slide1.jpg",
-		"tagLine": "Impressions tous formats <span>en boutique et en ligne</span>"
+		"tagLine": "Quizz <span>sur les jeux vidéos</span>"
 	},
-	{
-		"image": "slide2.jpg",
-		"tagLine": "Tirages haute définition grand format <span>pour vos bureaux et events</span>"
-	},
-	{
-		"image": "slide3.jpg",
-		"tagLine": "Grand choix de couleurs <span>de CMJN aux pantones</span>"
-	},
-	{
-		"image": "slide4.png",
-		"tagLine": "Autocollants <span>avec découpe laser sur mesure</span>"
-	}
+
 ]
 let actualSlider = 0;
 
@@ -79,3 +68,82 @@ arrowRight.addEventListener('click', function () {
 createDots();
 showSlide();
 
+
+// Quizz
+const quizData = [
+    {
+        question: "Quel est le nom du personnage principal de la série The Legend of Zelda ?",
+        options: ["Zelda", "Link", "Ganondorf", "Epona"],
+        answer: "Link",
+    },
+    {
+        question: "Lequel de ces jeux vidéo fait partie de la catégorie des MMORPG ?",
+        options: ["Tekken", "Assassin's Creed", "Fortnite", "World of Warcraft"],
+        answer: "World of Warcraft",
+    },
+    {
+        question: "Quel est le jeu vidéo le plus vendu de tout les temps?",
+        options: ["Minecraft", "Tetris", "GTA V", "Fortnite"],
+        answer: "Minecraft",
+    },
+    {
+        question: "What year was the PlayStation 1 released?",
+        options: ["1993", "1994", "1995", "1996"],
+        answer: "1994",
+    },
+];
+
+const questionEl = document.getElementById("question");
+const optionsEl = document.getElementById("options");
+const nextBtn = document.getElementById("next-btn");
+const resultEl = document.getElementById("result");
+
+let currentQuestionIndex = 0;
+let score = 0;
+
+function loadQuestion() {
+    const currentQuestion = quizData[currentQuestionIndex];
+    questionEl.textContent = currentQuestion.question;
+    optionsEl.innerHTML = "";
+
+    currentQuestion.options.forEach(option => {
+        const button = document.createElement("button");
+        button.textContent = option;
+        button.onclick = () => selectAnswer(button, option);
+        optionsEl.appendChild(button);
+    });
+}
+
+function selectAnswer(button, selectedOption) {
+    // Clear previous selection
+    const buttons = optionsEl.querySelectorAll("button");
+    buttons.forEach(btn => btn.classList.remove("selected"));
+
+    // Mark current button as selected
+    button.classList.add("selected");
+
+    const currentQuestion = quizData[currentQuestionIndex];
+    if (selectedOption === currentQuestion.answer) {
+        score++;
+    }
+    nextBtn.style.display = "block";
+}
+
+nextBtn.addEventListener("click", () => {
+    currentQuestionIndex++;
+    if (currentQuestionIndex < quizData.length) {
+        loadQuestion();
+        nextBtn.style.display = "none";
+    } else {
+        showResult();
+    }
+});
+
+function showResult() {
+    quiz.style.display = "none";
+    resultEl.style.display = "block";
+    resultEl.textContent = `You scored ${score}/${quizData.length}!`;
+}
+
+loadQuestion();
+nextBtn.style.display = "none";
