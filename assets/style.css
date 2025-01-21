@@ -119,7 +119,7 @@ header {
 
 .quiz-container {
     background-color: #162447;
-    border-radius: 50px 50px 0 0;
+    border-radius: 50px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
     padding: 20px;
     max-width: 400px;
@@ -133,6 +133,10 @@ header {
 .quiz-question {
     font-size: 1.2rem;
     margin-bottom: 15px;
+}
+
+.quiz-options {
+    padding-bottom: 20px;
 }
 
 .quiz-options button {
