@@ -1,8 +1,12 @@
 const slides = [
     {
         "image": "slide1.jpg",
-        "tagLine": "Quizz <span>sur les jeux vidéos</span>"
+        "tagLine": "Quiz <span>jeux vidéos</span>"
     },
+    {
+        "image": "slide2.jpg",
+        "tagLine": "En savoir plus"
+    }
 
 ]
 let actualSlider = 0;
@@ -69,7 +73,7 @@ createDots();
 showSlide();
 
 
-// Quizz
+// Quiz
 const quizData = [
     {
         question: "Quel est le nom du personnage principal de la série The Legend of Zelda ?",
@@ -87,7 +91,7 @@ const quizData = [
         answer: "Minecraft",
     },
     {
-        question: "What year was the PlayStation 1 released?",
+        question: "Quel est l'année de sortie de la PlayStation 1?",
         options: ["1993", "1994", "1995", "1996"],
         answer: "1994",
     },
